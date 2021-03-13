@@ -21,7 +21,7 @@ const query = gql`
   }
 `;
 
-const endpoint = "https://api.hackthenorth.com/v3/graphql";
+const endpoint = "https://young-scrubland-37084.herokuapp.com/https://api.hackthenorth.com/v3/graphql";
 
 export const htn = async () => {
   const data = await request(endpoint, query);
