@@ -35,7 +35,7 @@ const App = () => {
       setEvents(temp);
     };
     getEvents();
-  });
+  }, [,perms]);
 
   const closeLogin = () => {
     setIsModalOpen(false);
