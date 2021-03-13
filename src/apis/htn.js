@@ -22,7 +22,9 @@ const query = gql`
 `;
 
 export const htn = async () => {
-  const data = await request("https://api.hackthenorth.com/v3/graphql", query);
+  const data = await request("https://api.hackthenorth.com/v3/graphql", query, {
+    "content-type": "none"
+  });
   return data;
 }
 
