@@ -1,4 +1,4 @@
-import { GraphQLClient, gql } from "graphql-request";
+import { request, gql } from "graphql-request";
 
 const query = gql`
   {
@@ -22,14 +22,8 @@ const query = gql`
 `;
 
 const endpoint = "https://api.hackthenorth.com/v3/graphql";
-const client = new GraphQLClient(endpoint, {
-  headers: {
-    method: "get",
-    mode: "no-cors"
-  }
-});
 
 export const htn = async () => {
-  const data = await client.request(query);
+  const data = await request(endpoint, query);
   return data;
 };

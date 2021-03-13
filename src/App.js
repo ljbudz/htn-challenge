@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './App.css';
 import { htn } from "./apis/htn";
-import {sortByStart, filterPublic} from "./helpers";
+import {sortByStart, filterPublic, filterLink, restructureEvents} from "./helpers";
 import EventList from "./components/EventList";
 import LoginForm from "./components/LoginForm";
 import Navbar from "./components/Navbar";
@@ -15,27 +15,21 @@ const App = () => {
   useEffect(() => {
     const getEvents = async () => {
       let {events} = await htn();
+
+      // Filter out private events
       if(!perms) {
         events = events.filter(filterPublic);
       }
-
+      
+      // Get proper event link
+      events = filterLink(events, perms);
       events.sort(sortByStart);
-
-      let temp = {};
-
-      events.forEach(event => {
-        const date = new Date(event.start_time);
-        const key = date.toLocaleDateString();
-        if(temp.hasOwnProperty(key)) {
-          temp[key].push(event);
-        } else {
-          temp[key] = [event];
-        }
-      });
-      setEvents(temp);
+  
+      const e = restructureEvents(events);
+      setEvents(e);
     };
     getEvents();
-  }, [,perms]);
+  }, [perms]);
 
   const closeLogin = () => {
     setIsModalOpen(false);

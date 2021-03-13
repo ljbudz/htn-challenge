@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {keyframes} from 'styled-components';
-import { ReactComponent as Logo } from "../htn-icon.svg";
+import { ReactComponent as Logo } from "../images/htn-icon.svg";
 
 const rotate = keyframes`
   from {

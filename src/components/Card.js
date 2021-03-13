@@ -1,86 +1,94 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import ReactCardFlip from "react-card-flip";
+import Avatar from "./Avatar";
 
 const TYPE_TEXT = {
-  "workshop": "Workshop 🚧",
-  "activity": "Activity ✏",
-  "tech_talk": "Tech Talk 📢"
-}
+  workshop: "Workshop 🚧",
+  activity: "Activity ✏️",
+  tech_talk: "Tech Talk 📢"
+};
 
 const Box = styled.div`
-  height: 200px;
-  width: 90%;
-  margin: 20px 30px;
+  height: 225px;
   padding: 20px;
   background-color: #183249;
   border-radius: 30px;
-  /* border: 4px solid #efaba0; */
-  /* box-shadow: 0 0 0 10px #183249; */
 `;
 
-
 const Title = styled.h1`
-  color: white;
   font-size: 26px;
 `;
 
-const Avatar = styled.img`
-  vertical-align: middle;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  src: ${props => props.src};
-  z-index: 2000;
+const CompactText = styled.h4`
+  margin: 0;
 `;
 
 const AvatarRow = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
-  height: 100px;
+  padding-left: 50px;
 `;
 
-const BodyText = styled.h4`
+const SpeakersWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+`;
+
+const Link = styled.a`
+  text-decoration: none;
   color: white;
 `;
 
 const Card = (props) => {
-
   const [isFlipped, setIsFlipped] = useState(false);
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
     return date.toLocaleTimeString();
-  }
+  };
 
   const getAvatars = () => {
     const { speakers } = props;
-    
-    return speakers.map(({name, profile_pic}) => {
-      const src = profile_pic || "/user.png";
-      return <Avatar key={name} src={src} />
-    })
-  }
+
+    return speakers.map(({profile_pic, name}) => {
+      return <Avatar key={name} profile_pic={profile_pic} name={name}/>
+    });
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
     setIsFlipped(!isFlipped);
+  };
+
+  const handleLinkClick = (e) => {
+    e.stopPropagation();
   }
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
       <Box onClick={handleClick}>
         <Title>{props.name}</Title>
-        <BodyText>{"Start: " + formatDate(props.start_time)}</BodyText>
-        <BodyText>{"End: " + formatDate(props.end_time)}</BodyText>
-        <BodyText>{"Type: " + TYPE_TEXT[props.event_type]}</BodyText>
+        <h4>{"Start: " + formatDate(props.start_time)}</h4>
+        <h4>{"End: " + formatDate(props.end_time)}</h4>
+        <h4>{"Type: " + TYPE_TEXT[props.event_type]}</h4>
+        <Link href={props.url} onClick={handleLinkClick}>{"Link to event 🔗"}</Link>
       </Box>
       <Box onClick={handleClick}>
-        <BodyText>{props.description}</BodyText>
-        {props.event_type === "tech_talk" && <AvatarRow>{getAvatars()}</AvatarRow>}
+        <CompactText>{"Description: "}</CompactText>
+        <p>{props.description}</p>
+        {props.event_type === "tech_talk" && (
+          <SpeakersWrapper>
+            <CompactText>Speakers:</CompactText>
+            <AvatarRow>{getAvatars()}</AvatarRow>
+          </SpeakersWrapper>
+        )}
       </Box>
     </ReactCardFlip>
   );
@@ -94,12 +102,13 @@ Card.propTypes = {
   start_time: PropTypes.number,
   end_time: PropTypes.number,
   description: PropTypes.string,
-  speakers: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    profile_pic: PropTypes.string
-  })),
-  public_url: PropTypes.string,
-  private_url: PropTypes.string,
+  speakers: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      profile_pic: PropTypes.string
+    })
+  ),
+  url: PropTypes.string,
   related_events: PropTypes.arrayOf(PropTypes.number)
 };
 
