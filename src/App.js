@@ -1,24 +1,67 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from "react";
 import './App.css';
+import { htn } from "./apis/htn";
+import {sortByStart, filterPublic} from "./helpers";
+import EventList from "./components/EventList";
+import LoginForm from "./components/LoginForm";
+import Navbar from "./components/Navbar";
+import Modal from "./components/Modal";
 
-function App() {
+const App = () => {
+  const [perms, setPerms] = useState(false);
+  const [events, setEvents] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const getEvents = async () => {
+      let {events} = await htn();
+      if(!perms) {
+        events = events.filter(filterPublic);
+      }
+
+      events.sort(sortByStart);
+
+      let temp = {};
+
+      events.forEach(event => {
+        const date = new Date(event.start_time);
+        const key = date.toLocaleDateString();
+        if(temp.hasOwnProperty(key)) {
+          temp[key].push(event);
+        } else {
+          temp[key] = [event];
+        }
+      });
+      setEvents(temp);
+    };
+    getEvents();
+  });
+
+  const closeLogin = () => {
+    setIsModalOpen(false);
+  }
+
+  const onAuthenticate = () => {
+    setIsModalOpen(false);
+    setPerms(true);
+  }
+
+  const handleAuthBtn = () => {
+    if(perms) {
+      setPerms(false);
+    } else {
+      setIsModalOpen(true);
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Modal isOpen={isModalOpen} onRequestClose={closeLogin}>
+        <LoginForm onAuthenticate={onAuthenticate}/>
+      </Modal>
+      <Navbar authBtn={handleAuthBtn} authState={perms} />
+      <EventList events={events}/>
+    </>
   );
 }
 
