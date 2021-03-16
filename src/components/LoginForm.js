@@ -8,12 +8,13 @@ const FormBox = styled.form`
   padding: 0;
   outline: none;
   border-radius: 30px;
-  @media(max-width: 500px) {
+  border: 2px solid #efaba0;
+  @media (max-width: 500px) {
     height: auto;
     width: 95%;
     margin: 0 auto;
     padding: 5px;
-  } 
+  };
 `;
 
 const TextInput = styled.input`
