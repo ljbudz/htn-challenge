@@ -44,6 +44,9 @@ const Header = styled.h1`
   font-size: 50px;
   text-decoration: underline;
   padding-left: 20px;
+  @media (max-width: 700px) {
+    padding-left: 0;
+  }
 `;
 
 const EventList = (props) => {
