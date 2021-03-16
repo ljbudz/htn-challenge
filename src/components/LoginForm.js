@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const FormBox = styled.form`
-  height: 380px;
   width: 500px;
   background-color: #183249;
   padding: 0;
@@ -34,7 +33,7 @@ const SubmitBtn = styled.button`
   align-self: center;
   border: none;
   outline: none;
-  margin: 10px 0;
+  margin: 30px 0 0 0;
   &:hover {
     cursor: pointer;
   }

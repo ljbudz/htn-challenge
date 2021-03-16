@@ -38,8 +38,11 @@ const Column = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  padding-left: ${props => props.isLeft ? 0 : "5px"};
+  padding-right: ${props => props.isLeft ? "5px" : 0};
   @media (max-width: 400px) {
     width: 100%;
+    padding: 0;
   }
 `;
 
@@ -84,7 +87,7 @@ const FrontCard = (props) => {
     <>
       <Title>{props.name}</Title>
       <TextContainer>
-        <Column>
+        <Column isLeft>
           {getText("Start: ", formatDate(props.start_time))}
           {getText("End: ", formatDate(props.end_time))}
           {getText("Type: ", TYPE_TEXT[props.event_type])}
