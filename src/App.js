@@ -6,6 +6,7 @@ import EventList from "./components/EventList";
 import LoginForm from "./components/LoginForm";
 import Navbar from "./components/Navbar";
 import Modal from "./components/Modal";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [perms, setPerms] = useState(false);
@@ -55,6 +56,7 @@ const App = () => {
       </Modal>
       <Navbar authBtn={handleAuthBtn} authState={perms} />
       <EventList events={events}/>
+      <Footer/>
     </>
   );
 }

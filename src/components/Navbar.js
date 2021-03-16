@@ -18,7 +18,8 @@ const Box = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 60px;
-  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
   position: sticky;
   top: 0;
   left: 0;

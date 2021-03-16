@@ -11,10 +11,10 @@ const Wrapper = styled.div`
 const SpeakersWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  padding: 5px 0;
+  padding-top: 15px;
 `;
 
 const AvatarRow = styled.div`
@@ -22,7 +22,7 @@ const AvatarRow = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   width: 100%;
-  padding-left: 50px;
+  padding-left: 15px;
 `;
 
 const CompactText = styled.h4`
