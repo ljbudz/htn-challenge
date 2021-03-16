@@ -21,7 +21,6 @@ const query = gql`
   }
 `;
 
-const proxy = "https://young-scrubland-37084.herokuapp.com/";
 const endpoint = "https://api.hackthenorth.com/v3/graphql";
 
 export const htn = async () => {
