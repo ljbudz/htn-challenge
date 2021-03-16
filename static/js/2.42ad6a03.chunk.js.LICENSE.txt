@@ -22,6 +22,14 @@ object-assign
  * http://api.jqueryui.com/category/ui-core/
  */
 
+/*!
+ * JavaScript Cookie v2.2.1
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+
 /** @license React v0.20.1
  * scheduler.production.min.js
  *
