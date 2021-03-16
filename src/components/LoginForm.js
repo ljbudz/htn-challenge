@@ -8,6 +8,11 @@ const FormBox = styled.form`
   padding: 0;
   outline: none;
   border-radius: 30px;
+  @media(max-width: 500px) {
+    height: auto;
+    width: 95%;
+    margin: 0 auto;
+  } 
 `;
 
 const TextInput = styled.input`
@@ -27,6 +32,7 @@ const SubmitBtn = styled.button`
   align-self: center;
   border: none;
   outline: none;
+  margin: 10px 0;
   &:hover {
     cursor: pointer;
   }
@@ -49,11 +55,17 @@ const InputWrapper = styled.div`
 const Label = styled.h1`
   color: white;
   font-size: 20px;
+  @media (max-width: 500px) {
+    font-size: 16px;
+  }
 `;
 
 const Title = styled.h1`
   color: white;
   font-size: 38px;
+  @media(max-width: 500px) {
+    font-size: 24px;
+  }
 `;
 
 const FAKE_EMAIL = "htn2021@gmail.com";

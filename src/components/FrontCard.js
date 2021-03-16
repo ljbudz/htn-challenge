@@ -27,12 +27,18 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media(max-width: 400px) {
+    flex-direction: column;
+  }
 `;
 
 const Column = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  @media (max-width: 400px) {
+    width: 100%;
+  }
 `;
 
 const FrontCard = (props) => {
