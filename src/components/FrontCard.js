@@ -16,7 +16,9 @@ const CompactText = styled.h4`
   margin: 0.5rem 0;
 `;
 
-const Link = styled.a`
+const Link = styled.a.attrs(props => ({
+  target: "_blank"
+}))`
   text-decoration: none;
   color: white;
   margin: 0;
@@ -59,9 +61,9 @@ const FrontCard = (props) => {
       return (
         <CompactText key={name} style={{ margin: 0 }}>
           {name}
-          <a href={url} onClick={handleLinkClick}>
+          <Link href={url} onClick={handleLinkClick}>
             {" 🔗"}
-          </a>
+          </Link>
         </CompactText>
       );
     });
