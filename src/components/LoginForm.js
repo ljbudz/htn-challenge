@@ -12,6 +12,7 @@ const FormBox = styled.form`
     height: auto;
     width: 95%;
     margin: 0 auto;
+    padding: 5px;
   } 
 `;
 

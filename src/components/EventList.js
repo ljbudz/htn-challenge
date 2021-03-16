@@ -37,6 +37,10 @@ const CardWrapper = styled.div`
 const DateTitle = styled.h1`
   color: #183249;
   font-size: 40px;
+  margin: 30px 0 10px 0;
+  @media (max-width: 700px) {
+    margin: 20px 0 0 0;
+  }
 `;
 
 const Header = styled.h1`
@@ -44,8 +48,10 @@ const Header = styled.h1`
   font-size: 50px;
   text-decoration: underline;
   padding-left: 20px;
+  margin: 30px 0 0 0;
   @media (max-width: 700px) {
     padding-left: 0;
+    margin: 20px 0 0 0;
   }
 `;
 

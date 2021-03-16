@@ -62,6 +62,15 @@ const LoggedInWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 180px;
+  @media (max-width: 500px) {
+    justify-content: flex-end;
+  }
+`;
+
+const TitleText = styled(Text)`
+  @media(max-width: 500px) {
+    display: none;
+  };
 `;
 
 const Navbar = (props) => {
@@ -74,7 +83,7 @@ const Navbar = (props) => {
           <AuthBtn onClick={props.authBtn}>Log in</AuthBtn>
         ) : (
           <LoggedInWrapper>
-            <Text>Welcome user!</Text>
+            <TitleText>Welcome user!</TitleText>
             <AuthBtn onClick={props.authBtn}>Logout</AuthBtn>
           </LoggedInWrapper>
         )}
@@ -85,7 +94,7 @@ const Navbar = (props) => {
   return (
     <Box>
       <Icon/>
-      <Text>Hack the North 2021</Text>
+      <TitleText>Hack the North 2021</TitleText>
       {getAuthBtn()}
     </Box>
   );
