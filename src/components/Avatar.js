@@ -4,8 +4,8 @@ import user from "../images/user.png";
 
 const AvatarImage = styled.img`
   vertical-align: middle;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 4px solid #efaba0;
   src: ${(props) => props.src};
@@ -14,7 +14,7 @@ const AvatarImage = styled.img`
 
 const AvatarWrapper = styled.div`
   display: flex;
-  height: 100px;
+  height: 80px;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;

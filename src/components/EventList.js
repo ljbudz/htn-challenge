@@ -13,12 +13,21 @@ const Grid = styled.div`
   justify-content: space-between;
   height: 100%;
   width: 100%;
+
+  @media(max-width: 700px) {
+    flex-wrap: wrap;
+  }
 `;
 
 const EventWrapper = styled.div`
   width: 0;
   flex: 1 1 0;
   padding: 0 20px;
+
+  @media (max-width: 700px) {
+    flex: 0 0 100%;
+    padding: 0;
+  }
 `;
 
 const CardWrapper = styled.div`
@@ -40,6 +49,21 @@ const Header = styled.h1`
 const EventList = (props) => {
   const events = props.events;
 
+  const getRelatedEvents = (ids) => {
+    const relatedEvents = [];
+
+    Object.entries(events).forEach(([date, eventList]) => {
+      eventList.forEach(event => {
+        const id = event.id;
+        if(ids.includes(id)) {
+          relatedEvents.push(event);
+        }
+      });
+    });
+
+    return relatedEvents;
+  };
+
   const getEvents = () => {
     return Object.entries(events).map(([date, eventList]) => {
       return (
@@ -55,7 +79,7 @@ const EventList = (props) => {
     return e.map((event) => {
       return (
         <CardWrapper key={event.id}>
-          <Card {...event} />
+          <Card {...event} getRelatedEvents={getRelatedEvents} />
         </CardWrapper>
       );
     });
