@@ -7,6 +7,7 @@ import LoginForm from "./components/LoginForm";
 import Navbar from "./components/Navbar";
 import Modal from "./components/Modal";
 import Footer from "./components/Footer";
+import Cookies from "js-cookie";
 
 const App = () => {
   const [perms, setPerms] = useState(false);
@@ -16,6 +17,11 @@ const App = () => {
   useEffect(() => {
     const getEvents = async () => {
       let {events} = await htn();
+
+      // Check for authenticated cookie
+      if(Cookies.get("auth") === "htn2021") {
+        setPerms(true);
+      }
 
       // Filter out private events
       if(!perms) {
@@ -39,12 +45,16 @@ const App = () => {
   const onAuthenticate = () => {
     setIsModalOpen(false);
     setPerms(true);
+    Cookies.set('auth', 'htn2021', {expires: 1});
   }
 
   const handleAuthBtn = () => {
     if(perms) {
+      // Logout
       setPerms(false);
+      Cookies.remove('auth');
     } else {
+      // Open log in modal
       setIsModalOpen(true);
     }
   }
