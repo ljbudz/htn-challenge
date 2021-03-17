@@ -13,4 +13,4 @@ Credentials for logging into the application:
 **Email:** htn2021@gmail.com   
 **Password:** helloworld
 
-View live project [here!](https://ljbudz.github.io/htn-challenge/)
+View live project [here!](https://ljbudz.github.io/htn-challenge/) (Click the cards to flip!)
