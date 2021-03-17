@@ -48,6 +48,7 @@ const Column = styled.div`
 
 const FrontCard = (props) => {
 
+  // Converts unix timestamp to locale time
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
     return date.toLocaleTimeString();

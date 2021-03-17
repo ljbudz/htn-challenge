@@ -1,5 +1,6 @@
 import { request, gql } from "graphql-request";
 
+// Get all events and all of their fields
 const query = gql`
   {
     events {
@@ -23,6 +24,7 @@ const query = gql`
 
 const endpoint = "https://api.hackthenorth.com/v3/graphql";
 
+// Returns promise to request 
 export const htn = async () => {
   const data = await request(endpoint, query);
   return data;

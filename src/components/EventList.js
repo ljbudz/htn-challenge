@@ -58,11 +58,14 @@ const Header = styled.h1`
 const EventList = (props) => {
   const events = props.events;
 
+  // Get the list of releated events from their ids
   const getRelatedEvents = (ids) => {
     const relatedEvents = [];
 
+    // Iterate through all events
     Object.entries(events).forEach(([date, eventList]) => {
       eventList.forEach(event => {
+        // Check if event is related
         const id = event.id;
         if(ids.includes(id)) {
           relatedEvents.push(event);

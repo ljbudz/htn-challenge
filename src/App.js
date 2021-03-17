@@ -30,8 +30,10 @@ const App = () => {
       
       // Get proper event link
       events = filterLink(events, perms);
+      // Sort events by start time
       events.sort(sortByStart);
   
+      // Restructure events array
       const e = restructureEvents(events);
       setEvents(e);
     };
@@ -39,10 +41,12 @@ const App = () => {
   }, [perms]);
 
   const closeLogin = () => {
+    // Close login form
     setIsModalOpen(false);
   }
 
   const onAuthenticate = () => {
+    // Login successful - set browser cookie
     setIsModalOpen(false);
     setPerms(true);
     Cookies.set('auth', 'htn2021', {expires: 1});

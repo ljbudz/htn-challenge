@@ -14,25 +14,30 @@ const Box = styled.div`
 
 const Card = (props) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [minFrontHeight, setMinFrontHeight] = useState(0);
-  const [minBackHeight, setMinBackHeight] = useState(0);
-  const frontRef = useRef();
-  const backRef = useRef();
+  const [minFrontHeight, setMinFrontHeight] = useState(0);  // min-height of front card box
+  const [minBackHeight, setMinBackHeight] = useState(0);    // min-height of back card box
+  const frontRef = useRef();                                // Ref to front card box
+  const backRef = useRef();                                 // Ref to back card box
   const { height: frontHeight } = useResizeDetector({ targetRef: frontRef });
   const { height: backHeight } = useResizeDetector({ targetRef: backRef });
 
   useEffect(() => {
+    // Null variable check
     if (frontHeight && backHeight) {
       if(frontHeight > backHeight) {
+        // Front card is too large
         if(minFrontHeight > minBackHeight) {
           setMinFrontHeight(0);
         } else {
+          // Back card is too small
           setMinBackHeight(frontHeight);
         }
       } else if (backHeight > frontHeight) {
+        // Back card is too large
         if (minBackHeight > minFrontHeight) {
           setMinBackHeight(0);
         } else {
+          // Front card is too small
           setMinFrontHeight(backHeight);
         }
       }
