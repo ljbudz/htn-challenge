@@ -7,8 +7,8 @@ npm i
 yarn start
 ```
 
-Data taken from api.hackthenorth.com/v3/graphql
+Data taken from [api.hackthenorth.com/v3/graphql](api.hackthenorth.com/v3/graphql)  
 
-Credentials for logging into the application
-Email: htn2021@gmail.com 
-Password: helloworld
+Credentials for logging into the application:  
+**Email:** htn2021@gmail.com   
+**Password:** helloworld
