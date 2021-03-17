@@ -12,3 +12,5 @@ Data taken from [api.hackthenorth.com/v3/graphql](api.hackthenorth.com/v3/graphq
 Credentials for logging into the application:  
 **Email:** htn2021@gmail.com   
 **Password:** helloworld
+
+View live project [here!](https://ljbudz.github.io/htn-challenge/)
